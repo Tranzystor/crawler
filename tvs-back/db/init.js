@@ -1,4 +1,3 @@
-const tvModel = require('../models/tvModel.model');
 const tvOffer = require('../models/tvOffer.model');
 
 const connect = () => {
@@ -10,8 +9,7 @@ const connect = () => {
 }
 
 const ensureIndexes = () => {
-    tvModel.collection.createIndex({name: 1}, {unique: true});
-    tvOffer.collection.createIndex({name: 1}, {unique: true});
+    tvOffer.collection.createIndex({name: 1});
 }
 
 const init = () => {

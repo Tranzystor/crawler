@@ -1,16 +1,10 @@
-const tvOffer = require('../models/tvOffer.model');
+const queryService = require('../db/services/tv.queryService');
 
-exports.getTvs = async (_, res) => {
-    const models = await Tv.distinct('model').exec();
-
-    const groupedModels = await Promise.all(models.map(async model => {
-        const tvsByModel = await Tv.find({model}).exec();
-        const sortByDate = tvsByModel.sort((a,b) => new Date(a.date) - new Date(b.date));
-        return {
-            model,
-            elements: sortByDate
-        }
-    }));
-
+const getTvsByModel = async (_, res) => {
+    const groupedModels = await queryService.getTvsByModel();
     res.send(groupedModels);
+}
+
+module.exports = {
+    getTvsByModel
 }

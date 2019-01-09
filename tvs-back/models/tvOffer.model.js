@@ -12,5 +12,4 @@ let tvOfferSchema = new Schema({
     url: {type: String},
 });
 
-
 module.exports = mongoose.model('tvOffer', tvOfferSchema);

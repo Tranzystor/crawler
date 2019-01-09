@@ -1,6 +1,4 @@
-
-const upload = require('./uploader/uploaderNewDb');
-// const query = require('./query/index');
+const upload = require('./uploader/index');
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -13,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 const setupRoutes = require('./routes/index');
-setupRoutes();
+setupRoutes(app);
 
 let port = 1234;
 

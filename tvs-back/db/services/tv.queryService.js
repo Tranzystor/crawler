@@ -1,8 +1,7 @@
 const tvOffer = require('../../models/tvOffer.model');
 
-const getTvsByModel = () => {
-
-    const newest = tvOffer.aggregate([ 
+exports.getTvsByModel = async () => {
+    const newest = await tvOffer.aggregate([ 
         { $sort: { "model": 1, "date": -1 }}, 
         { 
             $group: { 
@@ -11,10 +10,10 @@ const getTvsByModel = () => {
                 newestPrice: { "$first": "$price"},
             }
         }
-    ]);
+    ]).exec();
     console.log(newest);
     
-    const lowest = tvOffer.aggregate([ 
+    const lowest = await tvOffer.aggregate([ 
         { $sort: { "model": 1, "price": 1 }}, 
         { 
             $group: { 
@@ -23,8 +22,10 @@ const getTvsByModel = () => {
                 lowestPriceDate: { "$first": "$date"},
             }
         }
-    ]);
+    ]).exec();
     console.log(lowest);
+    
+    return {
+        "foo": "bar"
+    };
 }
-
-module.exports = getTvsByModel;
