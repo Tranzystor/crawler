@@ -1,0 +1,3 @@
+
+exports.ALLEGRO = "ALLEGRO";
+exports.MEDIA_EXPERT = "MEDIA_EXPERT";
