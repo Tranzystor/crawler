@@ -13,3 +13,4 @@ let tvOfferSchema = new Schema({
 });
 
 module.exports = mongoose.model('tvOffer', tvOfferSchema);
+
