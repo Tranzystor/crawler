@@ -2,8 +2,6 @@ const tvOffer = require('../../models/tvOffer.model');
 
 exports.getTvsByModel = async () => {
     
-    console.log('----------------------------------');
-
     const tvs = await tvOffer.aggregate([
         {
             $match: {
@@ -19,6 +17,7 @@ exports.getTvsByModel = async () => {
                             _id: "$model", 
                             lowestPrice: { "$first": "$price" },
                             lowestPriceDate: { "$first": "$date"},
+                            diagonal: { "$first": "$diagonal" }
                         }
                     },
                 ],
@@ -55,6 +54,6 @@ exports.getTvsByModel = async () => {
             ...withoutId,
         }
     });
-    
+
     return mergedEntries;
 }

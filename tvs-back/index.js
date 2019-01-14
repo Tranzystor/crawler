@@ -22,7 +22,5 @@ app.listen(port, () => {
 process.argv.forEach(function (val, index, array) {
     if(val === 'upload-data'){
         upload();
-    } else if (val === 'query-sandbox'){
-        query();
     } 
   });
