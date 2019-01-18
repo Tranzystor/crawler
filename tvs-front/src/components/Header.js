@@ -1,15 +1,38 @@
-import React from 'react';
-import moment from 'moment';
+import React from "react";
+import moment from "moment";
+import styled from "styled-components";
 
-const displayDate = date => {
-    return moment(date).format('D-MMM-YY')
-  }
+const Wrapper = styled.div`
+  display: flex;
+`;
 
-const Header = ({tv}) => {
-    const cardTitle = `${tv.model} ${tv.diagonal} [cal] lowest: ${tv.lowestPrice} (${displayDate(tv.lowestPriceDate)}) current: ${tv.newestPrice}(${displayDate(tv.newestDate)})`;
-    return (
-        <div>{cardTitle}</div>
-    )
-}
+const HeaderElement = styled.div`
+  width: 200px;
+`;
+
+const formatDate = date => {
+  return moment(date).format("D-MMM-YY");
+};
+
+const Header = ({ tv }) => {
+  const {
+    model,
+    diagonal,
+    lowestPrice,
+    lowestPriceDate,
+    newestDate,
+    newestPrice
+  } = tv;
+  return (
+    <Wrapper>
+      <HeaderElement>{model}</HeaderElement>
+      <HeaderElement>{diagonal}[cal]</HeaderElement>
+      <HeaderElement>{formatDate(lowestPriceDate)}</HeaderElement>
+      <HeaderElement>{lowestPrice}</HeaderElement>
+      <HeaderElement>{formatDate(newestDate)}</HeaderElement>
+      <HeaderElement>{newestPrice}</HeaderElement>
+    </Wrapper>
+  );
+};
 
 export default Header;
